@@ -9,7 +9,7 @@ group :development, :test do
   gem 'sqlite3', '1.3.10'
 end
 group :production do
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.10'
   gem 'pg'
 end
 # Use SCSS for stylesheets
