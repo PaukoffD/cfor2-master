@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Клуб любителей чая</title>
+  <%= stylesheet_link_tag    'forem', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+<% end %>
+ 
+<%= link_to 'Главная', main_app.root_path %>
+<%= link_to 'Форум', forem.forums_path %>
+ 
+<header>
+  <nav>
+    <% if user_signed_in? %>
+      <%= link_to current_user.email, main_app.edit_user_registration_path %>
+      | <%= link_to "Выход", main_app.destroy_user_session_path, :method => 'delete' %>
+      <% if current_user.forem_admin %>
+        | <%= link_to "Administrate", forem.admin_root_url %>
+      <% end %>
+    <% else %>
+      <%= link_to "Регистрация", main_app.new_user_registration_path %>
+      | <%= link_to "Вход", main_app.new_user_session_path %>
+    <% end %>
+  </nav>
+</header>
+<body>
+
+<%= yield %>
+
+</body>
+
+      <!--<%= render 'layouts/footer' %> -->
+      
+</html>
