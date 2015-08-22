@@ -16,5 +16,5 @@
 /* @import 'forem/base'; */
 @import "bootstrap";
 @import "bootstrap-sprockets";
-@import "base"; /* app/assets/stylesheets/base.css.scss */
-@import "events"; /* app/assets/stylesheets/events.css.scss */
+/*@import "base"; /* app/assets/stylesheets/base.css.scss */
+/*@import "events"; /* app/assets/stylesheets/events.css.scss */*/
