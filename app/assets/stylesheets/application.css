@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-@import 'forem/base';
+/* @import 'forem/base'; */
 @import "bootstrap";
 @import "bootstrap-sprockets";
 @import "base"; /* app/assets/stylesheets/base.css.scss */
