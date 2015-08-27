@@ -22,7 +22,7 @@ test:
 
 production:
   adapter: postgresql
-  host: localhost
+  host: teaforum.heroku.com
   pool: 5
   timeout: 5000
   database: demo_production
