@@ -1,0 +1,178 @@
+DROP TABLE IF EXISTS "admins";
+CREATE TABLE "admins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+INSERT INTO "admins" VALUES(1,'111@111.com','$2a$10$YAzeexlTpRlouNoKl4wdJeRaTHCsD6oZe4RsaER.B.Fn2dkPEXUJi',NULL,NULL,NULL,1,'2015-08-07 12:37:35.207899','2015-08-07 12:37:35.207899','::1','::1','2015-08-07 12:37:35.157897','2015-08-07 12:37:35.210900');
+DROP TABLE IF EXISTS "forem_categories";
+CREATE TABLE "forem_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime, "updated_at" datetime, "slug" varchar, "position" integer DEFAULT 0);
+INSERT INTO "forem_categories" VALUES(7,'Клуб любителей чая','2015-08-13 06:34:45.842626','2015-08-13 06:34:45.842626','9d92c3f1-0f32-452c-87fd-e9c55fc19430',0);
+INSERT INTO "forem_categories" VALUES(8,'Прогнозы','2015-08-24 09:10:24.235001','2015-08-24 09:10:24.235001','bbace5e7-df48-4164-9bc5-23b223256494',5);
+DROP TABLE IF EXISTS "forem_forums";
+CREATE TABLE "forem_forums" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" text, "category_id" integer, "views_count" integer DEFAULT 0, "slug" varchar, "position" integer DEFAULT 0);
+INSERT INTO "forem_forums" VALUES(3,'Основная','Основная',7,24,'a38d03c8-7a67-4d7e-8697-bfb16e43ee31',0);
+INSERT INTO "forem_forums" VALUES(4,'Слухи','Слухи',7,19,'18befd59-8f87-47b8-9f28-b195b339777f',0);
+INSERT INTO "forem_forums" VALUES(5,'Техника','Техника',7,2,'3c112e28-d553-4d20-85e7-a7a4dd4b14bc',4);
+INSERT INTO "forem_forums" VALUES(6,'Аналитика','Аналитика',8,0,'b1701461-49a3-4d2b-b652-5df7090d9690',0);
+DROP TABLE IF EXISTS "forem_groups";
+CREATE TABLE "forem_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar);
+DROP TABLE IF EXISTS "forem_memberships";
+CREATE TABLE "forem_memberships" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "group_id" integer, "member_id" integer);
+DROP TABLE IF EXISTS "forem_moderator_groups";
+CREATE TABLE "forem_moderator_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "forum_id" integer, "group_id" integer);
+DROP TABLE IF EXISTS "forem_posts";
+CREATE TABLE "forem_posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "topic_id" integer, "text" text, "user_id" integer, "created_at" datetime, "updated_at" datetime, "reply_to_id" integer, "state" varchar DEFAULT 'pending_review', "notified" boolean DEFAULT 'f');
+INSERT INTO "forem_posts" VALUES(5,3,'12312312312312',1,'2015-08-13 06:36:37.752027','2015-08-13 06:36:37.752027',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(6,4,'sfdfsdf fsdfsdf ывааыва ываыва ываа ',4,'2015-08-13 08:29:23.782022','2015-08-13 08:29:23.782022',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(7,5,'«Газпром» изменил условия тендера на строительство участка магистрального газопровода «Сила Сибири». За 93 км трубопровода компания готова заплатить не 16,58 млрд руб., а лишь 7,778 млрд руб.
+
+Фото: ТАСС
+​«Газпром» более чем вдвое урезал сумму, которую он готов заплатить за строительство участка магистрального газопровода «Сила Сибири». Первый тендер в истории «Силы Сибири» — тендер за возможность получить подряд на прокладку участка трубопровода — был объявлен в начале августа 2015 года. Тогда начальная цена контракта на постройку трубопровода протяженностью 93,8 км (от города Ленск до компрессорной станции «Салдыкельская») была установлена в 16,581 млрд руб., однако сегодня в документацию были внесены изменения.
+
+В соответствии с обновленной версией документа начальная цена контракта составляет лишь 7,778 млрд руб. Таким образом, цена снижена более чем вдвое, а именно на 8,8 млрд руб.
+
+Срок подачи заявок от претендентов истекает 17 августа 2015 года, победителя предполагается объявить 21 августа текущего года.
+
+Подробнее на РБК:
+http://top.rbc.ru/business/13/08/2015/55cc8e169a79470594974c55',1,'2015-08-13 14:15:30.568814','2015-08-13 14:15:30.568814',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(8,5,'угу ',8,'2015-08-17 13:58:57.248083','2015-08-17 13:58:57.248083',7,'approved','t');
+INSERT INTO "forem_posts" VALUES(9,6,'17 тайских спасателей потребовалось, чтобы обезвредить восьмиметрового сетчатого питона в округе Тхонбури на территории Бангкока. Гигантская змея незаметно подкралась к отдыхающим в китайском ресторанчике. ',2,'2015-08-19 11:30:19.766376','2015-08-19 11:30:19.766376',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(10,6,'вау',9,'2015-08-19 11:31:37.013795','2015-08-19 11:31:37.013795',9,'approved','t');
+INSERT INTO "forem_posts" VALUES(11,6,'tertete  ertert',2,'2015-08-19 11:45:56.183936','2015-08-19 11:45:56.183936',9,'approved','t');
+INSERT INTO "forem_posts" VALUES(12,6,'парапр вапрар ',9,'2015-08-19 11:46:33.697082','2015-08-19 11:46:33.697082',11,'approved','t');
+INSERT INTO "forem_posts" VALUES(13,7,'укеукеукеуке',9,'2015-08-19 11:47:09.427126','2015-08-19 11:47:09.427126',NULL,'pending_review','f');
+INSERT INTO "forem_posts" VALUES(14,8,'rwerwer wrerwer wer wer wer',8,'2015-08-19 11:55:49.867893','2015-08-19 11:55:49.867893',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(15,8,'wrerwer wrer wer',8,'2015-08-19 11:56:01.699570','2015-08-19 11:56:01.699570',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(16,8,'еукепвапв пвап ввп',9,'2015-08-19 12:16:39.092345','2015-08-19 12:16:39.092345',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(17,9,'Ученые из Техасского университета в Остине под руководством психолога Карла Холагана пришли к выводу, что полный отказ от спиртного опаснее алкоголизма. Результаты исследования, опубликованного в журнале Alcoholism: Clinical and Experimental Research, подводят итог двадцатилетней работе.
+В эксперименте приняли участие более 1800 человек в возрасте от 55 до 65 лет, которых разделили на три группы: алкоголики, умеренно пьющие и трезвенники.
+Выяснилось, что люди, полностью отказавшиеся от алкоголя, умирают раньше других. В среднем, 69% из них не доживают до 65 лет. Среди алкоголиков таких набралось 60%, а среди умеренно пьющих - всего 41%. И это несмотря на то, что употребление алкоголя, очевидно, повышает риск развития болезней и несчастных случаев.
+При этом зависимости от других факторов не прослеживается. Не важно, сколько вы зарабатываете, как часто занимаетесь спортом и сколько у вас друзей.
+Самое же пагубное воздействие на организм человека оказывает резкий отказ от спиртного. Если алкоголик решит завязать с пагубной привычкой, скорее всего, он отойдет в мир иной значительно раньше, чем если бы продолжал выпивать.',9,'2015-08-20 10:50:31.484629','2015-08-20 10:50:31.484629',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(18,10,'<p><img alt="" src="http://c.lifenewscontent.ru/static/posts/2015/08/160030/4ee37e78e225466ada22218c1f3ec495__660x.jpg" style="width: 660px; height: 370px;" /></p>
+',1,'2015-08-25 14:10:48.669803','2015-08-25 14:10:48.669803',NULL,'approved','t');
+INSERT INTO "forem_posts" VALUES(19,11,'<p><iframe frameborder="1" height="480" scrolling="yes" src="&quot;https://www.youtube.com/embed/6IkCoOknL0c&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;" width="854"></iframe></p>
+',10,'2015-08-25 14:28:36.061855','2015-08-25 14:39:28.191154',NULL,'approved','t');
+DROP TABLE IF EXISTS "forem_subscriptions";
+CREATE TABLE "forem_subscriptions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "subscriber_id" integer, "topic_id" integer);
+INSERT INTO "forem_subscriptions" VALUES(3,1,3);
+INSERT INTO "forem_subscriptions" VALUES(5,1,5);
+INSERT INTO "forem_subscriptions" VALUES(6,2,6);
+INSERT INTO "forem_subscriptions" VALUES(7,9,7);
+INSERT INTO "forem_subscriptions" VALUES(8,8,8);
+INSERT INTO "forem_subscriptions" VALUES(9,9,9);
+INSERT INTO "forem_subscriptions" VALUES(10,1,10);
+INSERT INTO "forem_subscriptions" VALUES(11,10,11);
+DROP TABLE IF EXISTS "forem_topics";
+CREATE TABLE "forem_topics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "forum_id" integer, "user_id" integer, "subject" varchar, "created_at" datetime, "updated_at" datetime, "locked" boolean DEFAULT 'f' NOT NULL, "pinned" boolean DEFAULT 'f', "hidden" boolean DEFAULT 'f', "last_post_at" datetime, "state" varchar DEFAULT 'pending_review', "views_count" integer DEFAULT 0, "slug" varchar);
+INSERT INTO "forem_topics" VALUES(3,4,1,'1233312312312','2015-08-13 06:36:37.746027','2015-08-20 13:06:02.183679','f','f','f','2015-08-13 06:36:37.752027','approved',4,'1233312312312');
+INSERT INTO "forem_topics" VALUES(4,3,4,'fsdf sfdfsd fdsfsf','2015-08-13 08:29:23.770021','2015-08-13 08:30:58.097416','f','f','f','2015-08-13 08:29:23.782022','approved',9,'fsdf-sfdfsd-fdsfsf');
+INSERT INTO "forem_topics" VALUES(5,3,1,'Стоимость строительства участка «Силы Сибири» урезали в два раза ','2015-08-13 14:15:30.385803','2015-08-24 09:06:34.398855','f','f','f','2015-08-17 13:58:57.248083','approved',23,'ba3738b7-8f5b-424c-ab59-3b49597271cf');
+INSERT INTO "forem_topics" VALUES(6,4,2,'Восьмиметровый питон незаметно подкрался к ресторану в Бангкоке','2015-08-19 11:30:19.751376','2015-08-25 07:03:37.419223','f','f','f','2015-08-19 11:46:33.697082','approved',16,'ae5ba337-6fd5-4033-9b7e-eb1bfe28d48a');
+INSERT INTO "forem_topics" VALUES(7,4,9,'еукеук уке','2015-08-19 11:47:09.423125','2015-08-19 11:47:09.636138','f','f','f','2015-08-19 11:47:09.427126','pending_review',2,'66b4721f-6aec-4700-b68d-5b93b4571552');
+INSERT INTO "forem_topics" VALUES(8,4,8,'12312  4234 re3rwe','2015-08-19 11:55:49.861893','2015-08-25 07:02:35.749696','f','f','f','2015-08-19 12:16:39.092345','approved',10,'12312-4234-re3rwe');
+INSERT INTO "forem_topics" VALUES(9,4,9,'Отказ от алкоголя ведет к ранней смерти','2015-08-20 10:50:31.480629','2015-08-20 13:08:48.479190','f','t','f','2015-08-20 10:50:31.484629','approved',6,'b3d68202-f691-45de-af11-4c51074d5845');
+INSERT INTO "forem_topics" VALUES(10,5,1,'Васильева покинула колонию в джинсовой куртке и синих балетках','2015-08-25 14:10:48.663803','2015-08-25 14:10:48.905817','f','f','f','2015-08-25 14:10:48.669803','approved',2,'934dc05a-56e5-46b4-82ca-b54516e99e56');
+INSERT INTO "forem_topics" VALUES(11,3,10,'Ушел Лев Дуров','2015-08-25 14:28:36.057855','2015-08-25 14:39:28.329162','f','f','f','2015-08-25 14:28:36.061855','approved',6,'b12d4283-a876-4bbd-92e0-1a146831f2dc');
+DROP TABLE IF EXISTS "forem_views";
+CREATE TABLE "forem_views" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "viewable_id" integer, "created_at" datetime, "updated_at" datetime, "count" integer DEFAULT 0, "viewable_type" varchar, "current_viewed_at" datetime, "past_viewed_at" datetime);
+INSERT INTO "forem_views" VALUES(7,1,4,'2015-08-13 06:36:22.594160','2015-08-25 07:02:31.472451',4,'Forem::Forum','2015-08-25 07:02:31.471451','2015-08-20 13:05:56.850373');
+INSERT INTO "forem_views" VALUES(8,1,3,'2015-08-13 06:36:37.933037','2015-08-20 13:06:02.231681',3,'Forem::Topic','2015-08-20 13:06:02.230681','2015-08-20 11:25:53.519003');
+INSERT INTO "forem_views" VALUES(9,1,3,'2015-08-13 08:27:43.559289','2015-08-24 14:42:57.177754',15,'Forem::Forum','2015-08-24 14:42:56.668725','2015-08-24 09:02:13.374926');
+INSERT INTO "forem_views" VALUES(10,4,3,'2015-08-13 08:29:05.635984','2015-08-13 08:29:05.653985',1,'Forem::Forum','2015-08-13 08:29:05.635984','2015-08-13 08:29:05.635984');
+INSERT INTO "forem_views" VALUES(11,4,4,'2015-08-13 08:29:23.976033','2015-08-13 08:29:56.558896',3,'Forem::Topic','2015-08-13 08:29:23.976033','2015-08-13 08:29:23.976033');
+INSERT INTO "forem_views" VALUES(12,1,4,'2015-08-13 08:30:21.452320','2015-08-13 08:30:58.079415',4,'Forem::Topic','2015-08-13 08:30:21.452320','2015-08-13 08:30:21.452320');
+INSERT INTO "forem_views" VALUES(13,1,5,'2015-08-13 14:15:31.444864','2015-08-24 09:06:34.375854',15,'Forem::Topic','2015-08-24 09:02:15.498047','2015-08-20 13:01:50.117261');
+INSERT INTO "forem_views" VALUES(14,8,5,'2015-08-17 13:58:35.774854','2015-08-19 11:48:34.763007',4,'Forem::Topic','2015-08-19 11:48:34.762007','2015-08-17 13:58:35.775854');
+INSERT INTO "forem_views" VALUES(15,8,3,'2015-08-17 13:59:12.936980','2015-08-17 13:59:12.973982',1,'Forem::Forum','2015-08-17 13:59:12.936980','2015-08-17 13:59:12.936980');
+INSERT INTO "forem_views" VALUES(16,2,4,'2015-08-19 11:27:05.397259','2015-08-19 11:45:41.821115',3,'Forem::Forum','2015-08-19 11:45:41.799114','2015-08-19 11:27:05.397259');
+INSERT INTO "forem_views" VALUES(17,2,6,'2015-08-19 11:30:20.040392','2015-08-19 11:45:56.471953',4,'Forem::Topic','2015-08-19 11:45:45.614332','2015-08-19 11:30:20.040392');
+INSERT INTO "forem_views" VALUES(18,9,4,'2015-08-19 11:31:21.212891','2015-08-20 10:49:37.536544',6,'Forem::Forum','2015-08-20 10:49:37.487541','2015-08-19 12:16:59.632520');
+INSERT INTO "forem_views" VALUES(19,9,6,'2015-08-19 11:31:26.003165','2015-08-19 11:46:33.884093',4,'Forem::Topic','2015-08-19 11:46:33.882093','2015-08-19 11:31:26.003165');
+INSERT INTO "forem_views" VALUES(20,9,7,'2015-08-19 11:47:09.534132','2015-08-19 11:47:09.603136',1,'Forem::Topic','2015-08-19 11:47:09.534132','2015-08-19 11:47:09.534132');
+INSERT INTO "forem_views" VALUES(21,8,4,'2015-08-19 11:48:15.166886','2015-08-19 11:55:36.961155',2,'Forem::Forum','2015-08-19 11:48:15.167886','2015-08-19 11:48:15.167886');
+INSERT INTO "forem_views" VALUES(22,8,6,'2015-08-19 11:48:19.942159','2015-08-19 11:48:19.959160',1,'Forem::Topic','2015-08-19 11:48:19.942159','2015-08-19 11:48:19.942159');
+INSERT INTO "forem_views" VALUES(23,8,8,'2015-08-19 11:55:49.994900','2015-08-19 11:56:01.881580',2,'Forem::Topic','2015-08-19 11:55:49.995901','2015-08-19 11:55:49.995901');
+INSERT INTO "forem_views" VALUES(24,9,8,'2015-08-19 11:56:32.981359','2015-08-19 12:17:04.422794',4,'Forem::Topic','2015-08-19 12:16:44.158635','2015-08-19 11:56:32.981359');
+INSERT INTO "forem_views" VALUES(25,9,9,'2015-08-20 10:50:31.576634','2015-08-20 13:08:48.510192',2,'Forem::Topic','2015-08-20 13:08:48.509192','2015-08-20 10:50:31.576634');
+INSERT INTO "forem_views" VALUES(26,9,3,'2015-08-20 10:50:44.682384','2015-08-20 10:50:44.698385',1,'Forem::Forum','2015-08-20 10:50:44.682384','2015-08-20 10:50:44.682384');
+INSERT INTO "forem_views" VALUES(27,9,5,'2015-08-20 10:50:53.764904','2015-08-20 10:50:53.791905',1,'Forem::Topic','2015-08-20 10:50:53.765904','2015-08-20 10:50:53.765904');
+INSERT INTO "forem_views" VALUES(28,1,9,'2015-08-20 11:24:23.899877','2015-08-20 11:24:35.101517',2,'Forem::Topic','2015-08-20 11:24:23.900877','2015-08-20 11:24:23.900877');
+INSERT INTO "forem_views" VALUES(29,1,8,'2015-08-25 07:02:35.521683','2015-08-25 07:02:35.647690',1,'Forem::Topic','2015-08-25 07:02:35.521683','2015-08-25 07:02:35.521683');
+INSERT INTO "forem_views" VALUES(30,1,6,'2015-08-25 07:03:19.956224','2015-08-25 07:03:37.391221',3,'Forem::Topic','2015-08-25 07:03:19.956224','2015-08-25 07:03:19.956224');
+INSERT INTO "forem_views" VALUES(31,1,5,'2015-08-25 14:08:53.238201','2015-08-25 14:08:53.306205',1,'Forem::Forum','2015-08-25 14:08:53.238201','2015-08-25 14:08:53.238201');
+INSERT INTO "forem_views" VALUES(32,1,10,'2015-08-25 14:10:48.789810','2015-08-25 14:10:48.875815',1,'Forem::Topic','2015-08-25 14:10:48.789810','2015-08-25 14:10:48.789810');
+INSERT INTO "forem_views" VALUES(33,10,3,'2015-08-25 14:24:10.495665','2015-08-25 14:24:10.511666',1,'Forem::Forum','2015-08-25 14:24:10.495665','2015-08-25 14:24:10.495665');
+INSERT INTO "forem_views" VALUES(34,10,11,'2015-08-25 14:28:36.166861','2015-08-25 14:39:28.298161',5,'Forem::Topic','2015-08-25 14:28:36.166861','2015-08-25 14:28:36.166861');
+DROP TABLE IF EXISTS "schema_migrations";
+CREATE TABLE "schema_migrations" ("version" varchar NOT NULL);
+INSERT INTO "schema_migrations" VALUES('20150807120632');
+INSERT INTO "schema_migrations" VALUES('20150807120731');
+INSERT INTO "schema_migrations" VALUES('20150807121116');
+INSERT INTO "schema_migrations" VALUES('20150807121117');
+INSERT INTO "schema_migrations" VALUES('20150807121118');
+INSERT INTO "schema_migrations" VALUES('20150807121119');
+INSERT INTO "schema_migrations" VALUES('20150807121120');
+INSERT INTO "schema_migrations" VALUES('20150807121121');
+INSERT INTO "schema_migrations" VALUES('20150807121122');
+INSERT INTO "schema_migrations" VALUES('20150807121123');
+INSERT INTO "schema_migrations" VALUES('20150807121124');
+INSERT INTO "schema_migrations" VALUES('20150807121125');
+INSERT INTO "schema_migrations" VALUES('20150807121126');
+INSERT INTO "schema_migrations" VALUES('20150807121127');
+INSERT INTO "schema_migrations" VALUES('20150807121128');
+INSERT INTO "schema_migrations" VALUES('20150807121129');
+INSERT INTO "schema_migrations" VALUES('20150807121130');
+INSERT INTO "schema_migrations" VALUES('20150807121131');
+INSERT INTO "schema_migrations" VALUES('20150807121132');
+INSERT INTO "schema_migrations" VALUES('20150807121133');
+INSERT INTO "schema_migrations" VALUES('20150807121134');
+INSERT INTO "schema_migrations" VALUES('20150807121135');
+INSERT INTO "schema_migrations" VALUES('20150807121136');
+INSERT INTO "schema_migrations" VALUES('20150807121137');
+INSERT INTO "schema_migrations" VALUES('20150807121138');
+INSERT INTO "schema_migrations" VALUES('20150807121139');
+INSERT INTO "schema_migrations" VALUES('20150807121140');
+INSERT INTO "schema_migrations" VALUES('20150807121141');
+INSERT INTO "schema_migrations" VALUES('20150807121142');
+INSERT INTO "schema_migrations" VALUES('20150807121143');
+INSERT INTO "schema_migrations" VALUES('20150807121144');
+INSERT INTO "schema_migrations" VALUES('20150807121145');
+INSERT INTO "schema_migrations" VALUES('20150807121146');
+INSERT INTO "schema_migrations" VALUES('20150807121147');
+INSERT INTO "schema_migrations" VALUES('20150812072751');
+INSERT INTO "schema_migrations" VALUES('20150817124209');
+INSERT INTO "schema_migrations" VALUES('20150817141235');
+DROP TABLE IF EXISTS "usernames";
+CREATE TABLE "usernames" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "name" varchar, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+INSERT INTO "usernames" VALUES(1,'12@12.com','Admin',1,'','');
+DROP TABLE IF EXISTS "users";
+CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "forem_admin" boolean DEFAULT 'f', "forem_state" varchar DEFAULT 'pending_review', "forem_auto_subscribe" boolean DEFAULT 'f', "name" varchar, "date_of_birth" datetime, "is_female" boolean DEFAULT 'f', "avatar_file_name" varchar, "avatar_content_type" varchar, "avatar_file_size" integer, "avatar_updated_at" datetime);
+INSERT INTO "users" VALUES(1,'12@12.com','$2a$10$dOowj0gsGjOA7T4GLNIFtOTpL36HwG0PaSjf5.at/GT1AhrMne.WC',NULL,NULL,NULL,15,'2015-08-26 13:46:00.121108','2015-08-25 06:54:59.446597','::1','::1','2015-08-07 12:29:49.850282','2015-08-26 13:47:02.731689','t','approved','f','Admin','1920-08-29 00:00:00.000000','f','missing.png','image/png',20411,'2015-08-20 12:14:56.430327');
+INSERT INTO "users" VALUES(2,'111@11.com','$2a$10$YMNfOWwjmaiSMsXWVzV4LOe6EaBhZYd5rv8KzLuc4aCn3PCszajNq',NULL,NULL,NULL,3,'2015-08-19 11:32:11.292755','2015-08-19 11:26:23.769878','::1','::1','2015-08-12 12:50:16.540959','2015-08-19 11:32:11.295756','f','approved','f','Жучила','1998-08-19 00:00:00.000000','f',NULL,NULL,NULL,NULL);
+INSERT INTO "users" VALUES(3,'11@11.com','$2a$10$3sKbiobGRSinJCoF1szI8Op.dtTYzY6cMt9J1JOI9xzl14R47661W',NULL,NULL,NULL,1,'2015-08-13 06:21:10.861012','2015-08-13 06:21:10.861012','::1','::1','2015-08-13 06:21:10.828010','2015-08-13 06:21:10.863012','f','pending_review','f',NULL,NULL,'f',NULL,NULL,NULL,NULL);
+INSERT INTO "users" VALUES(4,'333@33.com','$2a$10$LTArmxKqJE2MH8Ofz3y1KexQkjOT5hMEhnitniljS09nJEkqVWZM2',NULL,NULL,NULL,1,'2015-08-13 08:28:59.365625','2015-08-13 08:28:59.365625','::1','::1','2015-08-13 08:28:59.292621','2015-08-13 08:28:59.367625','f','approved','f',NULL,NULL,'f',NULL,NULL,NULL,NULL);
+INSERT INTO "users" VALUES(5,'22@22.com','$2a$10$j6Yn8.6AyWCobvsywaKiwe832m0As7M9XNdOZ50zcx0uHxVDcZDse',NULL,NULL,NULL,1,'2015-08-17 12:51:23.690232','2015-08-17 12:51:23.690232','::1','::1','2015-08-17 12:51:23.662231','2015-08-17 12:51:23.691232','f','pending_review','f',NULL,NULL,'f',NULL,NULL,NULL,NULL);
+INSERT INTO "users" VALUES(7,'12312@11.com','$2a$10$pJWCgpw2K/UEVBGK6ZFWuuc7VYFlj0k5xXls1aDpGVsHW/bnU/4qe',NULL,NULL,NULL,1,'2015-08-17 13:17:50.789009','2015-08-17 13:17:50.789009','::1','::1','2015-08-17 13:17:50.762008','2015-08-17 13:39:40.456918','f','pending_review','f','qwer','2015-08-17 00:00:00.000000','f',NULL,NULL,NULL,NULL);
+INSERT INTO "users" VALUES(8,'1@1.com','$2a$10$62VcUYye5ibzYG0zrXwWSeauG8iHuygjLiSDe.b/gbwTUg/U8HoPm',NULL,NULL,NULL,2,'2015-08-19 11:48:05.394327','2015-08-17 13:58:29.045470','::1','::1','2015-08-17 13:58:29.013468','2015-08-19 11:48:05.397327','f','approved','f','Xulia',NULL,'f',NULL,NULL,NULL,NULL);
+INSERT INTO "users" VALUES(9,'2@1.com','$2a$10$pw9645buXHfCKXDwCIvjjuq2RSRsGXvCAndQPKcUDCf9JiejPUqLC',NULL,NULL,NULL,4,'2015-08-20 13:07:49.494816','2015-08-19 11:56:23.151797','::1','::1','2015-08-19 11:31:15.416559','2015-08-20 13:08:42.929873','f','approved','f','Арманьяк','1920-08-20 00:00:00.000000','f','111.jpg','image/jpeg',438002,'2015-08-20 13:08:24.242804');
+INSERT INTO "users" VALUES(10,'3@1.com','$2a$10$ulhpCNv3qMH/6intJOqW..BXSq4o7sPLDijZthCbTs8ZUKhmcByW2',NULL,NULL,NULL,3,'2015-08-26 14:04:16.423812','2015-08-25 14:12:00.357904','::1','::1','2015-08-24 12:58:32.031408','2015-08-26 14:04:16.425813','f','approved','f','Шмаровка ',NULL,'f',NULL,NULL,NULL,NULL);
+CREATE UNIQUE INDEX "index_admins_on_email" ON "admins" ("email");
+CREATE UNIQUE INDEX "index_admins_on_reset_password_token" ON "admins" ("reset_password_token");
+CREATE UNIQUE INDEX "index_forem_categories_on_slug" ON "forem_categories" ("slug");
+CREATE UNIQUE INDEX "index_forem_forums_on_slug" ON "forem_forums" ("slug");
+CREATE INDEX "index_forem_groups_on_name" ON "forem_groups" ("name");
+CREATE INDEX "index_forem_memberships_on_group_id" ON "forem_memberships" ("group_id");
+CREATE INDEX "index_forem_moderator_groups_on_forum_id" ON "forem_moderator_groups" ("forum_id");
+CREATE INDEX "index_forem_posts_on_reply_to_id" ON "forem_posts" ("reply_to_id");
+CREATE INDEX "index_forem_posts_on_state" ON "forem_posts" ("state");
+CREATE INDEX "index_forem_posts_on_topic_id" ON "forem_posts" ("topic_id");
+CREATE INDEX "index_forem_posts_on_user_id" ON "forem_posts" ("user_id");
+CREATE INDEX "index_forem_topics_on_forum_id" ON "forem_topics" ("forum_id");
+CREATE UNIQUE INDEX "index_forem_topics_on_slug" ON "forem_topics" ("slug");
+CREATE INDEX "index_forem_topics_on_state" ON "forem_topics" ("state");
+CREATE INDEX "index_forem_topics_on_user_id" ON "forem_topics" ("user_id");
+CREATE INDEX "index_forem_views_on_updated_at" ON "forem_views" ("updated_at");
+CREATE INDEX "index_forem_views_on_user_id" ON "forem_views" ("user_id");
+CREATE INDEX "index_forem_views_on_viewable_id" ON "forem_views" ("viewable_id");
+CREATE INDEX "index_usernames_on_user_id" ON "usernames" ("user_id");
+CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email");
+CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token");
+CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
