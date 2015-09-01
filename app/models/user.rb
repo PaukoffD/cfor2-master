@@ -8,6 +8,13 @@ class User < ActiveRecord::Base
 def forem_name
   name
 end	 
+def full_name
+    if self.name.blank?
+      self.email
+    else
+      self.name
+    end
+  end
 		 
 end
 def forem_name

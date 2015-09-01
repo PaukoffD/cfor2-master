@@ -46,7 +46,7 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
-
+#gem 'friendly_id', '~> 5.1.0'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'forem', github: "radar/forem", branch: "rails4"
@@ -54,7 +54,8 @@ gem 'forem-bootstrap', github: "radar/forem-bootstrap"
 gem 'forem-redcarpet', github: "radar/forem-redcarpet"
 gem 'devise'
 gem 'will_paginate'
-gem 'jquery-rails'
+
 gem 'paperclip', '~> 4.1'
 gem 'ckeditor'
 gem 'yaml_db'
+

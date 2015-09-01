@@ -9,7 +9,16 @@
 
   <div class='contents col-md-7'>
     <time datetime="<%= post.created_at.to_s(:db) -%>"><%= "#{time_ago_in_words(post.created_at)} #{t("ago")}" %></time>
-    <%= forem_format(post.text) %>
+    <div class="form-group">
+     <%= forem_format(post.text ) %>
+     </div>
+	
+	 
+	<div class="form-group">
+        <font size="3" color="blue"><%= post.text  %>
+    </div> 
+	 
+	 
 
     <% if post.reply_to %>
       <span class='in_reply_to'>
@@ -18,3 +27,6 @@
     <% end %>
   </div>
 </div>
+
+
+

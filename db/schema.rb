@@ -13,24 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150825133304) do
 
-  create_table "admins", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -143,16 +125,6 @@ ActiveRecord::Schema.define(version: 20150825133304) do
   add_index "forem_views", ["updated_at"], name: "index_forem_views_on_updated_at"
   add_index "forem_views", ["user_id"], name: "index_forem_views_on_user_id"
   add_index "forem_views", ["viewable_id"], name: "index_forem_views_on_viewable_id"
-
-  create_table "usernames", force: :cascade do |t|
-    t.string   "email"
-    t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "usernames", ["user_id"], name: "index_usernames_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",               null: false
