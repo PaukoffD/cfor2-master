@@ -58,4 +58,4 @@ gem 'will_paginate'
 gem 'paperclip', '~> 4.1'
 gem 'ckeditor'
 gem 'yaml_db'
-
+gem 'rails_admin'
