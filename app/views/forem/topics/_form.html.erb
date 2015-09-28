@@ -2,7 +2,7 @@
   <%= f.input :subject %>
 
   <%= f.simple_fields_for :posts do |post| %>
-    <%= render :partial => "forem/posts/form", :locals => { :f => post }%>
+    <%= render :partial => "forem/posts/form", :locals => { :f => post }, :input_html => { :class => "field col-md-12" }, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'}}%>
   <% end %>
   
   <%= f.submit :class => "btn btn-primary" %>
